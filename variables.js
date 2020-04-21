@@ -1,0 +1,27 @@
+
+var canvas = document.getElementById('gamewindow')
+var ctx = canvas.getContext('2d')
+
+const GRID = 60;
+const C_WIDTH = canvas.width = GRID*10;
+const C_HEIGHT = canvas.height = GRID*8;
+
+////colors////
+
+const 	RED 	= '#e40058',
+	GREEN	= '#58d854',
+	DGREEN	= '#00a800',
+	YELLOW	= '#d8f878',
+	WHITE	= 'white',
+	BROWN	= '#c2b193',
+	GREY	= '#787878';
+
+const PLAYER_SPR = {
+0:[[GREEN,10,20,40,40],[WHITE,15,15,10,10],[WHITE,35,15,10,10],[DGREEN,15,35,30,2]],
+1:[[GREEN,10,30,40,30],[WHITE,15,25,10,10],[WHITE,35,25,10,10],[DGREEN,15,45,30,8]]
+
+}
+
+var FRAME = 0;
+var playerX = 100;
+var playerY= 100;

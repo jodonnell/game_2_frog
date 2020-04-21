@@ -1,0 +1,45 @@
+<HTML>
+
+
+<CANVAS id='gamewindow'></CANVAS>
+
+<SCRIPT src='variables.js'></SCRIPT>
+<SCRIPT>
+
+function incrementAnimationFrame(){
+  FRAME++;
+  FRAME %= 2;
+  setTimeout(incrementAnimationFrame,500)
+}
+incrementAnimationFrame()
+
+
+function drawRectangle(xposition,yposition,color,x,y,w,h){
+  ctx.fillStyle = color;
+  ctx.fillRect(x+xposition,y+yposition,w,h);
+}
+
+function drawPlayer(){
+  const img = PLAYER_SPR[FRAME]
+  img.forEach(block => {
+	drawRectangle(playerX,playerY,...block)
+  })
+}
+
+
+function gameLoop(){
+requestAnimationFrame(gameLoop)
+
+ctx.fillStyle = BROWN
+ctx.fillRect(0,0,C_WIDTH,C_HEIGHT)
+
+drawPlayer()
+
+}
+gameLoop()
+
+
+
+
+</SCRIPT>
+</HTML>
