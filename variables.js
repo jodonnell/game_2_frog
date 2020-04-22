@@ -15,7 +15,8 @@ const 	RED 	= '#e40058',
 	YELLOW	= '#d8f878',
 	WHITE	= 'white',
 	BROWN	= '#c2b193',
-	GREY	= '#787878';
+	GREY	= '#9f9f9f',
+	DGREY	= '#787878';
 
 const PLAYER_SPR = {
 0:[[GREEN,10,20,40,40],[WHITE,15,15,10,5],[WHITE,35,15,10,5],[YELLOW,15,25,30,35],[DGREEN,15,25,30,2]],
