@@ -1,6 +1,6 @@
 
-var canvas = document.getElementById('gamewindow')
-var ctx = canvas.getContext('2d')
+var canvas = document.getElementById('gamewindow');
+var ctx = canvas.getContext('2d');
 
 const GRID = 60;
 const C_WIDTH = canvas.width = GRID*10;
