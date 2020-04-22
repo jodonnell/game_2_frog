@@ -6,6 +6,7 @@ const GRID = 60;
 const C_WIDTH = canvas.width = GRID*10;
 const C_HEIGHT = canvas.height = GRID*8;
 
+
 ////colors////
 
 const 	RED 	= '#e40058',
@@ -23,5 +24,12 @@ const PLAYER_SPR = {
 }
 
 var FRAME = 0;
-var playerX = 100;
-var playerY= 100;
+var player = {
+	x:GRID*5,
+	y:GRID*7,
+	xSpeed:0,
+	ySpeed:0,
+	moveing:false
+}
+
+

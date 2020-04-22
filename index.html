@@ -22,10 +22,22 @@ function drawRectangle(xposition,yposition,color,x,y,w,h){
 function drawPlayer(){
   const img = PLAYER_SPR[FRAME]
   img.forEach(block => {
-	drawRectangle(playerX,playerY,...block)
+	drawRectangle(player.x,player.y,...block)
   })
 }
 
+document.addEventListener('keydown',(e)=>{
+	if (e.repeat || player.moveing)return;
+	if (e.key == 'ArrowLeft') player.x-=60;
+	else if(e.key == 'ArrowRight')player.x+=60;
+	else if(e.key == 'ArrowUp')player.y-=60;
+})
+
+function checkPlayerBounds(){
+  if (player.x >= C_WIDTH) player.x = C_WIDTH - GRID; 
+  else if (player.x < 0)player.x = 0;
+  else if (player.y < 0)player.y = C_HEIGHT - GRID;
+}
 
 function gameLoop(){
 requestAnimationFrame(gameLoop)
@@ -33,13 +45,11 @@ requestAnimationFrame(gameLoop)
 ctx.fillStyle = BROWN
 ctx.fillRect(0,0,C_WIDTH,C_HEIGHT)
 
+checkPlayerBounds()
 drawPlayer()
 
 }
 gameLoop()
-
-
-
 
 </SCRIPT>
 </HTML>
