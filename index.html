@@ -23,8 +23,10 @@ function drawRectangle(xposition,yposition,color,x,y,w,h){
 function drawPlayer(){
   const img = PLAYER_SPR[FRAME]
   img.forEach(block => {
-	drawRectangle(player.x,player.y,...block)
+	drawRectangle(player.x-player.offsetX,player.y,...block)
   })
+  ctx.fillStyle = 'red';
+  ctx.fillRect(player.x,player.y,player.width,60)
 }
 
 function setPlayerMoveing(dx,dy){
@@ -40,14 +42,19 @@ document.addEventListener('keydown',(e)=>{
 	else if(e.key == 'ArrowUp') setPlayerMoveing(0,-4);
 })
 
+function playerX(){
+  return player.x-player.offsetX
+}
+
 function PlayerIsOnGrid(){
-  return ((player.x % GRID == 0) && (player.y % GRID == 0))
+  return ((playerX() % GRID == 0) && (player.y % GRID == 0))
 
 }
 
+
 function checkPlayerBounds(){
-  if (player.x > C_WIDTH - GRID/2 ) player.xSpeed *=-1; 
-  else if (player.x < -GRID/2) player.xSpeed *=-1;
+  if (playerX() > C_WIDTH - GRID/2 ) player.xSpeed *=-1; 
+  else if (playerX() < -GRID/2) player.xSpeed *=-1;
   else if (player.y <= -GRID) player.y = C_HEIGHT + player.ySpeed;
 }
 

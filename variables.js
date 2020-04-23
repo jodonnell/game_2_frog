@@ -25,11 +25,13 @@ const PLAYER_SPR = {
 }
 
 var FRAME = 0;
-var player = {
-	x:GRID*5,
+var player = {	
+        offsetX:20,
+	x:GRID*5+20,
 	y:GRID*7,
 	xSpeed:0,
 	ySpeed:0,
+	width:20,
 	moveing:false
 }
 
