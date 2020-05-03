@@ -35,4 +35,8 @@ var player = {
 	moveing:false
 }
 
-
+const CAR_PATTERN = {
+  0:'cc.....ccc.....cc....cccc.....',
+  1:'....cc......cc.........ccc....',
+  2:'.ccc......cccc.....cc.....cc..'
+}
