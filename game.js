@@ -19,14 +19,18 @@ function drawPlayer() {
     img.forEach((block) => {
         drawRectangle(player.x - player.offsetX, player.y, ...block);
     });
-    ctx.fillStyle = "red";
-    ctx.fillRect(player.x, player.y, player.width, 60);
 }
 
 function setPlayerMoving(dx, dy) {
     player.moving = true;
     player.xSpeed = dx;
     player.ySpeed = dy;
+}
+
+function resetPlayer() {
+    player.x = GRID * 5 + 20;
+    player.y = GRID * 7;
+    player.moving = false;
 }
 
 document.addEventListener("keydown", (e) => {
@@ -103,6 +107,27 @@ function moveCars(lane) {
     });
 }
 
+function checkForCollision(car) {
+    const playerLeft = player.x - 5;
+    const playerRight = playerLeft + player.width + 10;
+
+    const playerTop = player.y + 10;
+    const playerBottom = playerTop + 50;
+
+    const carLeft = car.x;
+    const carRight = carLeft + car.w;
+
+    const carTop = car.y;
+    const carBottom = car.y + GRID;
+
+    if (playerRight <= carLeft || playerLeft >= carRight)
+        return false;
+    if (playerTop >= carBottom || playerBottom <= carTop)
+        return false;
+    return true;
+
+}
+
 var LANE_1 = new CarLane(gridScale(6), 2, 1, CAR_PATTERN[0]),
     LANE_2 = new CarLane(gridScale(5), 6, -1, CAR_PATTERN[1]),
     LANE_3 = new CarLane(gridScale(4), 4, 1, CAR_PATTERN[2]);
@@ -115,11 +140,16 @@ function gameLoop() {
 
     movePlayer();
     drawPlayer();
-    drawCars(LANE_1);
-    drawCars(LANE_2);
-    drawCars(LANE_3);
-    moveCars(LANE_1);
-    moveCars(LANE_2);
-    moveCars(LANE_3);
+    [LANE_1, LANE_2, LANE_3].forEach(lane => {
+        drawCars(lane);
+        moveCars(lane);
+        lane.cars.forEach((car) => {
+            if (checkForCollision(car)) {
+                resetPlayer();
+            }
+
+        });
+    });
+
 }
 gameLoop();
