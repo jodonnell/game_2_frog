@@ -143,6 +143,7 @@ function gameLoop() {
     [LANE_1, LANE_2, LANE_3].forEach(lane => {
         drawCars(lane);
         moveCars(lane);
+		if (PlayerIsOnGrid())
         lane.cars.forEach((car) => {
             if (checkForCollision(car)) {
                 resetPlayer();
